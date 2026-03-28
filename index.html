@@ -20,15 +20,87 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
 
-      <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="./assets/github-logo.png"
+      type="image/x-icon" />
 
     <title>GitHub Issue Tracker</title>
   </head>
   <body>
+    <section
+      id="login"
+      class="flex min-h-screen justify-center items-center py-30">
+      <div class="text-center">
+        <fieldset
+          class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+          <div class="flex flex-col justify-center items-center space-y-2">
+            <img src="./assets/github-logo.png" alt="" />
+            <h2 class="text-2xl font-bold">GitHub Issues Tracker</h2>
+            <p class="text-sm">Sing in to manage your issues</p>
+          </div>
 
-    <div class="text-center ">
-        <h2 class="text-2xl font-bold">HI starting Project</h2>
-    </div>
+          <label class="label text-xl font-bold">Username</label>
+          <input
+            id="loginadmin"
+            type="text "
+            class="input"
+            placeholder="admin" />
+          <p class="text-start text-[#4A00FF]">Default : admin</p>
 
+          <label class="label text-xl font-bold">Password</label>
+          <input
+            id="loginpass"
+            type="password"
+            class="input"
+            placeholder="Password" />
+          <p class="text-start text-[#4A00FF]">Default : admin123</p>
+
+          <button id="loginbtn" class="btn btn-primary mt-4">Login</button>
+        </fieldset>
+      </div>
+    </section>
+
+    <main id="showIssue" class="hidden">
+      <section>
+        <div class="navbar bg-base-100 shadow-sm">
+          <div class="flex-1">
+            <a class="btn btn-ghost text-xl">daisyUI</a>
+          </div>
+          <div class="flex gap-2">
+            <input
+              type="text"
+              placeholder="Search"
+              class="input input-bordered w-24 md:w-auto" />
+            <div class="dropdown dropdown-end">
+              <div
+                tabindex="0"
+                role="button"
+                class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
+              </div>
+              <ul
+                tabindex="-1"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li>
+                  <a class="justify-between">
+                    Profile
+                    <span class="badge">New</span>
+                  </a>
+                </li>
+                <li><a>Settings</a></li>
+                <li><a>Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
   </body>
 </html>
