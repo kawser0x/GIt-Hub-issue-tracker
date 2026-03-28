@@ -26,8 +26,17 @@
       type="image/x-icon" />
 
     <title>GitHub Issue Tracker</title>
+
+    <!-- link css -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
+  <body class="bg-[#F8FAFC]">
     <section
       id="login"
       class="flex min-h-screen justify-center items-center py-30">
@@ -61,42 +70,47 @@
       </div>
     </section>
 
-    <main id="showIssue" class="hidden">
-      <section>
-        <div class="navbar bg-base-100 shadow-sm">
-          <div class="flex-1">
-            <a class="btn btn-ghost text-xl">daisyUI</a>
+    <main id="showIssue" class="hidden space-y-5">
+      <section class="w-full mx-auto">
+        <div class="navbar bg-base-100 shadow-sm justify-between px-8">
+          <div class="flex justify-center items-center gap-2">
+            <img class="h-8" src="./assets/github-logo.png" />
+            <p>GitHub Issues Tracker</p>
           </div>
           <div class="flex gap-2">
-            <input
-              type="text"
-              placeholder="Search"
-              class="input input-bordered w-24 md:w-auto" />
-            <div class="dropdown dropdown-end">
-              <div
-                tabindex="0"
-                role="button"
-                class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                </div>
-              </div>
-              <ul
-                tabindex="-1"
-                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li>
-                  <a class="justify-between">
-                    Profile
-                    <span class="badge">New</span>
-                  </a>
-                </li>
-                <li><a>Settings</a></li>
-                <li><a>Logout</a></li>
-              </ul>
+            <label
+              class="input input-bordered flex items-center gap-2 w-55 md:w-auto">
+              <i class="fa-solid fa-magnifying-glass opacity-70"></i>
+              <input type="text" class="grow" placeholder="Search Issues..." />
+            </label>
+            <div class="btn btn-primary">
+              <button>+New Issues</button>
             </div>
           </div>
+        </div>
+      </section>
+      <section class="w-10/12 mx-auto bg-white shadow-lg p-5 rounded-md">
+        <button type="submit" class="btn">All</button>
+        <button type="submit" class="btn">Open</button>
+        <button type="submit" class="btn">Closed</button>
+      </section>
+      <section
+        class="flex justify-between items-center w-10/12 mx-auto bg-white shadow-lg p-5 rounded-md sticky top-5">
+        <div class="flex gap-3">
+          <div>
+            <img src="./assets/Aperture.png" />
+          </div>
+          <div>
+            <h3><span>50 </span>Issues</h3>
+            <p>Track and manage your project issues</p>
+          </div>
+        </div>
+        <div class="flex gap-2 items-center">
+          <p class=""><i class="text-green-500 fa-solid fa-circle"></i> Open</p>
+
+          <p class="">
+            <i class="text-purple-500 fa-solid fa-circle"></i> Closed
+          </p>
         </div>
       </section>
     </main>
