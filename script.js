@@ -56,9 +56,8 @@ async function displayIssue() {
   divContant(data.data);
 }
 
-
 function divContant(data) {
-    countIssues.innerText = data.length;
+  countIssues.innerText = data.length;
   displycontainer.innerHTML = "";
 
   data.forEach((item) => {
@@ -106,12 +105,149 @@ function divContant(data) {
   });
 }
 
-
 const allbutton = document.getElementById("allbutton");
+const openbutton = document.getElementById("openbutton");
+const closebutton = document.getElementById("closedbutton");
 
-allbutton.addEventListener("click",()=>{
-    displayIssue();
-})
+allbutton.addEventListener("click", () => {
+    allbutton.classList.add("btn-primary");
+    openbutton.classList.remove("btn-primary");
+    closebutton.classList.remove("btn-primary");
+  displayIssue();
+});
+
+async function displayIssueopen() {
+  const response = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  );
+  const data = await response.json();
+  divContantopen(data.data);
+}
+
+function divContantopen(data) {
+  displycontainer.innerHTML = "";
+  let count = 0;
+  data.forEach((item) => {
+    if (item.status === "open") {
+      count++;
+      const card = document.createElement("div");
+
+      const labelsHtml = item.labels
+        .map((label) => {
+          if (label.toLowerCase() === "bug") {
+            return `<button class="badge badge-outline badge-secondary"><i class="fa-solid fa-bug "></i>${label.toUpperCase()}</button>`;
+          } else if (label.toLowerCase() === "enhancement") {
+            return `<button class="badge badge-outline badge-accent"><i class="fa-solid fa-link"></i>${label.toUpperCase()}</button>`;
+          } else if (label.toLowerCase() === "help wanted") {
+            return `<button class="badge badge-outline badge-warning"><i class="fa-regular fa-life-ring"></i>${label.toUpperCase()}</button>`;
+          } else {
+            return `<button class="badge badge-outline badge-primary"><i class="fa-brands fa-git-alt"></i>${label.toUpperCase()}</button>`;
+          }
+        })
+        .join("");
+
+      const priorityL = findP(item.priority);
+      card.innerHTML = `
+      <div id="colorP" class="shadow-xl p-6 space-y-3 border-t-2 ${priorityL.colorClass}  h-full flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            ${priorityL.html}
+          </div>
+          
+          <div>
+            <h2 class="text-xl font-bold">${item.title}</h2>
+            <p class="text-sm font-light text-gray-500">${item.description}</p>
+
+            <div class="flex flex-wrap gap-2 pt-3 cursor-pointer">
+               ${labelsHtml}
+            </div>
+          </div>
+        </div>
+
+        <div class="text-sm font-light border-t pt-4 mt-4 flex justify-between items-center">
+          <p># ${item.id} by <span class="font-semibold">${item.author}</span></p>
+          <p>${new Date(item.createdAt).toLocaleDateString()}</p>
+        </div>
+      </div>
+    `;
+      displycontainer.appendChild(card);
+    }
+  });
+  countIssues.innerText = count;
+}
+
+openbutton.addEventListener("click", () => {
+    openbutton.classList.add("btn-primary");
+  allbutton.classList.remove("btn-primary");
+  closebutton.classList.remove("btn-primary");
+  displayIssueopen();
+});
+
+async function displayIssueclosed() {
+  const response = await fetch(
+    "https://phi-lab-server.vercel.app/api/v1/lab/issues",
+  );
+  const data = await response.json();
+  divContantclosed(data.data);
+}
+
+function divContantclosed(data) {
+  displycontainer.innerHTML = "";
+  let count2 = 0;
+  data.forEach((item) => {
+    if (item.status === "closed") {
+      count2++;
+      const card = document.createElement("div");
+
+      const labelsHtml = item.labels
+        .map((label) => {
+          if (label.toLowerCase() === "bug") {
+            return `<button class="badge badge-outline badge-secondary"><i class="fa-solid fa-bug "></i>${label.toUpperCase()}</button>`;
+          } else if (label.toLowerCase() === "enhancement") {
+            return `<button class="badge badge-outline badge-accent"><i class="fa-solid fa-link"></i>${label.toUpperCase()}</button>`;
+          } else if (label.toLowerCase() === "help wanted") {
+            return `<button class="badge badge-outline badge-warning"><i class="fa-regular fa-life-ring"></i>${label.toUpperCase()}</button>`;
+          } else {
+            return `<button class="badge badge-outline badge-primary"><i class="fa-brands fa-git-alt"></i>${label.toUpperCase()}</button>`;
+          }
+        })
+        .join("");
+
+      const priorityL = findP(item.priority);
+      card.innerHTML = `
+      <div id="colorP" class="shadow-xl p-6 space-y-3 border-t-2 ${priorityL.colorClass}  h-full flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            ${priorityL.html}
+          </div>
+          
+          <div>
+            <h2 class="text-xl font-bold">${item.title}</h2>
+            <p class="text-sm font-light text-gray-500">${item.description}</p>
+
+            <div class="flex flex-wrap gap-2 pt-3 cursor-pointer">
+               ${labelsHtml}
+            </div>
+          </div>
+        </div>
+
+        <div class="text-sm font-light border-t pt-4 mt-4 flex justify-between items-center">
+          <p># ${item.id} by <span class="font-semibold">${item.author}</span></p>
+          <p>${new Date(item.createdAt).toLocaleDateString()}</p>
+        </div>
+      </div>
+    `;
+      displycontainer.appendChild(card);
+    }
+  });
+  countIssues.innerText = count2;
+}
+
+closebutton.addEventListener("click", () => {
+      closebutton.classList.add("btn-primary");
+      openbutton.classList.remove("btn-primary");
+  allbutton.classList.remove("btn-primary");
+  displayIssueclosed(); 
+});
 
 displayIssue();
-
