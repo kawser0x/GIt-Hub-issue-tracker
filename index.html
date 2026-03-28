@@ -70,8 +70,9 @@
       </div>
     </section>
 
-    <main id="showIssue" class="hidden space-y-5">
-      <section class="w-full mx-auto">
+    <main id="showIssue" class=" space-y-5">
+      <header class="sticky top-0 space-y-1">
+        <section class="w-full mx-auto">
         <div class="navbar bg-base-100 shadow-sm justify-between px-8">
           <div class="flex justify-center items-center gap-2">
             <img class="h-8" src="./assets/github-logo.png" />
@@ -89,19 +90,19 @@
           </div>
         </div>
       </section>
-      <section class="w-10/12 mx-auto bg-white shadow-lg p-5 rounded-md">
-        <button type="submit" class="btn">All</button>
-        <button type="submit" class="btn">Open</button>
-        <button type="submit" class="btn">Closed</button>
+      <section class="w-10/12 mx-auto bg-white shadow-lg px-5 py-2 rounded-md">
+        <button id="allbutton" type="submit" class="btn btn-primary">All</button>
+        <button id="openbutton" type="submit" class="btn">Open</button>
+        <button id="closedbutton" type="submit" class="btn">Closed</button>
       </section>
       <section
-        class="flex justify-between items-center w-10/12 mx-auto bg-white shadow-lg p-5 rounded-md sticky top-5">
+        class="flex justify-between items-center w-10/12 mx-auto bg-white shadow-lg px-5 py-2 rounded-md ">
         <div class="flex gap-3">
           <div>
             <img src="./assets/Aperture.png" />
           </div>
           <div>
-            <h3><span>50 </span>Issues</h3>
+            <h3><span id="countIssue">${0} </span> Issues</h3>
             <p>Track and manage your project issues</p>
           </div>
         </div>
@@ -113,13 +114,14 @@
           </p>
         </div>
       </section>
+      </header>
 
-      <section id="show-issues" class="w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <section id="show-issues" class="w-9/12 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
       
     </section>
     </main>
 
-    
+
 
     <script src="./script.js"></script>
   </body>
