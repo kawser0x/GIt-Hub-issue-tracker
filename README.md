@@ -1,14 +1,3 @@
-# 🌟 Welcome To (সহজ সরল সিম্পল) Assignment - 5
-
-# **📅 Deadline For 60 marks:** 9th March, 2026 (11:59 pm ⏱️)  
-#  📅 No Deadline For 50 marks  
-# **📅 Deadline For 30 marks:** Any time after 9th March.
-
----
-
-# Assignment-05: GitHub Issues Tracker
-
-
 ### **API Endpoints:**
 ###  **All Issues:** 
   - https://phi-lab-server.vercel.app/api/v1/lab/issues 
