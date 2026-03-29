@@ -51,7 +51,8 @@ function findP(priority) {
 }
 
 async function displayIssue() {
-    loadingspinner.classList.remove("hidden");
+  loadingspinner.classList.remove("hidden");
+  displycontainer.innerHTML = "";
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
@@ -114,14 +115,15 @@ const openbutton = document.getElementById("openbutton");
 const closebutton = document.getElementById("closedbutton");
 
 allbutton.addEventListener("click", () => {
-    allbutton.classList.add("btn-primary");
-    openbutton.classList.remove("btn-primary");
-    closebutton.classList.remove("btn-primary");
+  allbutton.classList.add("btn-primary");
+  openbutton.classList.remove("btn-primary");
+  closebutton.classList.remove("btn-primary");
   displayIssue();
 });
 
 async function displayIssueopen() {
-    loadingspinner.classList.remove("hidden");
+  loadingspinner.classList.remove("hidden");
+  displycontainer.innerHTML = "";
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
@@ -183,14 +185,15 @@ function divContantopen(data) {
 }
 
 openbutton.addEventListener("click", () => {
-    openbutton.classList.add("btn-primary");
+  openbutton.classList.add("btn-primary");
   allbutton.classList.remove("btn-primary");
   closebutton.classList.remove("btn-primary");
   displayIssueopen();
 });
 
 async function displayIssueclosed() {
-    loadingspinner.classList.remove("hidden");
+  loadingspinner.classList.remove("hidden");
+  displycontainer.innerHTML = "";
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
@@ -252,40 +255,40 @@ function divContantclosed(data) {
 }
 
 closebutton.addEventListener("click", () => {
-      closebutton.classList.add("btn-primary");
-      openbutton.classList.remove("btn-primary");
+  closebutton.classList.add("btn-primary");
+  openbutton.classList.remove("btn-primary");
   allbutton.classList.remove("btn-primary");
-  displayIssueclosed(); 
+  displayIssueclosed();
 });
 
+async function openissueModal(id) {
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`,
+  );
+  const data = await res.json();
 
-async function openissueModal(id){
-    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
-    const data = await res.json();
-
-    if (data.status === "success") {
-        displayModal(data.data);
-    }
-    
+  if (data.status === "success") {
+    displayModal(data.data);
+  }
 }
 
 function displayModal(issue) {
-    const labelsHtml = issue.labels
-        .map((label) => {
-          if (label.toLowerCase() === "bug") {
-            return `<button class="badge badge-outline badge-secondary"><i class="fa-solid fa-bug "></i>${label.toUpperCase()}</button>`;
-          } else if (label.toLowerCase() === "enhancement") {
-            return `<button class="badge badge-outline badge-accent"><i class="fa-solid fa-link"></i>${label.toUpperCase()}</button>`;
-          } else if (label.toLowerCase() === "help wanted") {
-            return `<button class="badge badge-outline badge-warning"><i class="fa-regular fa-life-ring"></i>${label.toUpperCase()}</button>`;
-          } else {
-            return `<button class="badge badge-outline badge-primary"><i class="fa-brands fa-git-alt"></i>${label.toUpperCase()}</button>`;
-          }
-        })
-        .join("");
-    const modalContent = document.getElementById("modalDiv");
+  const labelsHtml = issue.labels
+    .map((label) => {
+      if (label.toLowerCase() === "bug") {
+        return `<button class="badge badge-outline badge-secondary"><i class="fa-solid fa-bug "></i>${label.toUpperCase()}</button>`;
+      } else if (label.toLowerCase() === "enhancement") {
+        return `<button class="badge badge-outline badge-accent"><i class="fa-solid fa-link"></i>${label.toUpperCase()}</button>`;
+      } else if (label.toLowerCase() === "help wanted") {
+        return `<button class="badge badge-outline badge-warning"><i class="fa-regular fa-life-ring"></i>${label.toUpperCase()}</button>`;
+      } else {
+        return `<button class="badge badge-outline badge-primary"><i class="fa-brands fa-git-alt"></i>${label.toUpperCase()}</button>`;
+      }
+    })
+    .join("");
+  const modalContent = document.getElementById("modalDiv");
 
-    modalContent.innerHTML = `
+  modalContent.innerHTML = `
         <div class="space-y-4">
             <div>
                 <h2 class="text-2xl font-bold">${issue.title}</h2>
@@ -308,7 +311,7 @@ function displayModal(issue) {
             <div class="flex justify-between border-t pt-4">
                 <div>
                     <p class="text-xs uppercase text-gray-400">Assignee</p>
-                    <h2 class="text-lg font-bold">${issue.assignee || 'Unassigned'}</h2>
+                    <h2 class="text-lg font-bold">${issue.assignee || "Unassigned"}</h2>
                 </div>
                 <div class="text-right">
                     <p class="text-xs uppercase text-gray-400">Priority</p>
@@ -318,11 +321,10 @@ function displayModal(issue) {
         </div>
     `;
 
-    document.getElementById("showissuemodal").showModal();
+  document.getElementById("showissuemodal").showModal();
 }
 
 displayIssue();
-
 
 document.getElementById("btn-search").addEventListener("click", () => {
   const input = document.getElementById("issue-search");

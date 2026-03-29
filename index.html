@@ -70,7 +70,7 @@
       </div>
     </section>
 
-    <main id="showIssue" class="space-y-5 ">
+    <main id="showIssue" class="space-y-5 hidden">
       <header class="sticky top-0 space-y-1">
         <section class="w-full mx-auto">
           <div class="navbar bg-base-100 shadow-sm justify-between px-8">
@@ -82,7 +82,8 @@
               <label
                 class="input input-bordered flex items-center gap-2 w-55 md:w-auto">
                 <i class="fa-solid fa-magnifying-glass opacity-70"></i>
-                <input id="issue-search"
+                <input
+                  id="issue-search"
                   type="text"
                   class="grow"
                   placeholder="Search Issues..." />
@@ -123,9 +124,11 @@
           </div>
         </section>
       </header>
-          <div id="loading-spinner" class="flex justify-center items-center hidden my-4">
-    <span class="loading loading-spinner loading-lg text-primary"></span>
-</div>
+      <div
+        id="loading-spinner"
+        class="flex justify-center items-center hidden my-4">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+      </div>
       <section
         id="show-issues"
         class="w-9/12 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></section>
@@ -135,9 +138,7 @@
       <!-- Open the modal using ID.showModal() method -->
       <dialog id="showissuemodal" class="modal">
         <div class="modal-box">
-          <div id="modalDiv" class=" space-y-3">
-            
-        </div>
+          <div id="modalDiv" class="space-y-3"></div>
           <div class="modal-action">
             <form method="dialog">
               <!-- if there is a button in form, it will close the modal -->
@@ -148,11 +149,7 @@
       </dialog>
     </section>
 
-    <section class="w-10/12 mx-auto">
-        
-    </section>
-
-
+    <section class="w-10/12 mx-auto"></section>
 
     <script src="./script.js"></script>
   </body>
