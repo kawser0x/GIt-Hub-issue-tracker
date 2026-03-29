@@ -322,3 +322,19 @@ function displayModal(issue) {
 }
 
 displayIssue();
+
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  const input = document.getElementById("issue-search");
+  const searchValue = input.value.trim().toLowerCase();
+
+  fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+    .then((res) => res.json())
+    .then((data) => {
+      const allissues = data.data;
+      const filterissues = allissues.filter((issue) =>
+        issue.title.toLowerCase().includes(searchValue),
+      );
+      divContant(filterissues);
+    });
+});
