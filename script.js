@@ -11,6 +11,8 @@ const colorP = document.getElementById("colorP");
 
 const countIssues = document.getElementById("countIssue");
 
+const loadingspinner = document.getElementById("loading-spinner");
+
 loginbtn.addEventListener("click", () => {
   if (admininput.value === "admin" && logPass.value === "admin123") {
     login.classList.add("hidden");
@@ -49,10 +51,12 @@ function findP(priority) {
 }
 
 async function displayIssue() {
+    loadingspinner.classList.remove("hidden");
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await response.json();
+  loadingspinner.classList.add("hidden");
   divContant(data.data);
 }
 
@@ -117,10 +121,12 @@ allbutton.addEventListener("click", () => {
 });
 
 async function displayIssueopen() {
+    loadingspinner.classList.remove("hidden");
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await response.json();
+  loadingspinner.classList.add("hidden");
   divContantopen(data.data);
 }
 
@@ -184,10 +190,12 @@ openbutton.addEventListener("click", () => {
 });
 
 async function displayIssueclosed() {
+    loadingspinner.classList.remove("hidden");
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
   const data = await response.json();
+  loadingspinner.classList.add("hidden");
   divContantclosed(data.data);
 }
 
@@ -261,23 +269,6 @@ async function openissueModal(id){
     
 }
 
-// "status": "success",
-// "message": "Issue fetched successfully",
-// "data": {
-// "id": 33,
-// "title": "Add bulk operations support",
-// "description": "Allow users to perform bulk actions like delete, update status on multiple items at once.",
-// "status": "open",
-// "labels": [
-// "enhancement"
-// ],
-// "priority": "low",
-// "author": "bulk_barry",
-// "assignee": "",
-// "createdAt": "2024-02-02T10:00:00Z",
-// "updatedAt": "2024-02-02T10:00:00Z"
-// }
-
 function displayModal(issue) {
     const labelsHtml = issue.labels
         .map((label) => {
@@ -327,7 +318,6 @@ function displayModal(issue) {
         </div>
     `;
 
-    // Open the DaisyUI Modal
     document.getElementById("showissuemodal").showModal();
 }
 
